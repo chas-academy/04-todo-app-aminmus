@@ -4,6 +4,10 @@ namespace Todo;
 
 class TodoItem extends Model
 {
+    // Query Exection Format
+    // methods: query($query); bind($param, $value); execute();
+    // self::$db->method();
+
     const TABLENAME = 'todos'; // This is used by the abstract model, don't touch
 
     // public static function createTodo($title)
@@ -23,10 +27,11 @@ class TodoItem extends Model
         // TODO: Implement me!
         // TODO: Change so deletion occurs with POST instead of GET
         // Delete a specific todo
-        $query = 'DELETE FROM todos WHERE id = :id';
-        self::$db->query($query);
-        self::$db->bind(':id', $todoId);
+
+        $sql = 'DELETE FROM todos WHERE id = :todoId';
         
+        self::$db->query($sql);
+        self::$db->bind(':todoId', $todoId);
         self::$db->execute();
     }
     
