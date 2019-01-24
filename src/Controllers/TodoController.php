@@ -15,16 +15,26 @@ class TodoController extends Controller
     public function add()
     {
         $body = filter_body();
+        $data = ['add_error' => ''];
         
-        // Check if input is empty or only contains whitespace
+        // Checks if input is empty or only contains whitespace
         if (isset($body['title']) && (trim($body['title']) !== '')) {
             $result = TodoItem::createTodo($body['title']);
 
             if ($result) {
                 $this->redirect('/');
             }
-        } else { // If input is incorrect
-            // Show error message to user
+        } else {
+            // If input is incorrect, shows error message to user
+
+            // Adds the todo items as data so they are still visible in the view
+            $todos = TodoItem::findAll();
+            $data['todos'] = $todos;
+
+            // Adds the error message as data
+            $data['add_error'] = 'Please enter something into the field';
+
+            return $this->view('index', $data);
         }
     }
 

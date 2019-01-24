@@ -41,6 +41,14 @@ form {
   outline: 0;
 }
 
+.error-message {
+  display: flex;
+  font-size: 20px;
+  border: 1px solid mediumvioletred;
+  padding: 5px;
+  color: mediumvioletred;
+}
+
 .hidden {
   display: none;
 }
