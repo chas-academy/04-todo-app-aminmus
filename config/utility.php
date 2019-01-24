@@ -52,3 +52,7 @@ function includeWith($filePath, $variables = array())
     return $output;
 }
 
+function showExceptionMessage($exception)
+{
+    echo "<b>Caught exception:</b> {$exception->getMessage()} in File: <b>{$exception->getFile()}</b> on line <b>{$exception->getLine()}</b>";
+}

@@ -24,15 +24,17 @@ class TodoItem extends Model
 
     public static function deleteTodo($todoId)
     {
-        // TODO: Implement me!
-        // TODO: Change so deletion occurs with POST instead of GET
         // Delete a specific todo
 
         $sql = 'DELETE FROM todos WHERE id = :todoId';
-        
-        self::$db->query($sql);
-        self::$db->bind(':todoId', $todoId);
-        self::$db->execute();
+
+        try {
+            self::$db->query($sql);
+            self::$db->bind(':todoId', $todoId);
+            self::$db->execute();
+        } catch (\Exception $e) {
+            showExceptionMessage($e); // Will only be visible if page is not redirected via TodoController
+        }
     }
     
     // (Optional bonus methods below)
