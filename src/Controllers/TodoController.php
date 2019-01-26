@@ -15,11 +15,14 @@ class TodoController extends Controller
     public function add()
     {
         $body = filter_body();
-        $data = ['add_error' => ''];
-        
+        $todoTitle = $body['title'];
+
         // Checks if input is empty or only contains whitespace
-        if (isset($body['title']) && (trim($body['title']) !== '')) {
-            $result = TodoItem::createTodo($body['title']);
+        if (isset($todoTitle) && (trim($todoTitle) !== '')) {
+            $todoTitle = trim($todoTitle); // Trims whitespace from beginning/end
+            $todoTitle = htmlspecialchars($todoTitle); // Converts HTML characters to HTML entities
+
+            $result = TodoItem::createTodo($todoTitle);
 
             if ($result) {
                 $this->redirect('/');
