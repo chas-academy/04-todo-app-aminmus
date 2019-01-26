@@ -56,3 +56,11 @@ function showExceptionMessage($exception)
 {
     echo "<b>Caught exception:</b> {$exception->getMessage()} in File: <b>{$exception->getFile()}</b> on line <b>{$exception->getLine()}</b>";
 }
+
+function sanitizeInput($input)
+{
+    $input = trim($input); // Trims whitespace from beginning/end
+    $input = htmlspecialchars($input); // Converts HTML characters to HTML entities
+
+    return $input;
+}
