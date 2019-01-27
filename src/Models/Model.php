@@ -25,7 +25,7 @@ abstract class Model
         return $oClass->getConstants();
     }
 
-    /** 
+    /**
      * Generic model method for selecting everything from a model class
      * that inhertis this abstract model
      */
@@ -46,7 +46,7 @@ abstract class Model
         }
     }
 
-    /** 
+    /**
      * Generic model method for selecting a specific item from a model class
      * that inhertis this abstract model
      */
