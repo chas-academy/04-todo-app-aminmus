@@ -47,6 +47,8 @@ class TodoController extends Controller
         $completed = isset($body['status']) ? 2 : 1; // whether or not the todo has been checked or not (2 == true, 1 == false, To work with DB)
         $todoTitle = $body['title'];
 
+        // TODO: Do not let user change todo item to be empty or contain only whitespace
+
         $todoTitle = sanitizeInput($todoTitle);
 
         // This action should update a specific todo item in the todos table using the TodoItem::updateTodo method.
@@ -60,7 +62,7 @@ class TodoController extends Controller
 
         if ($result) {
             $this->redirect('/');
-        }
+        } // TODO: Show error
     }
 
     public function delete($urlParams)
