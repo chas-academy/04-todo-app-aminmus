@@ -27,7 +27,7 @@ class TodoController extends Controller
                 $this->redirect('/');
             }
         } else {
-            // If input is incorrect, shows error message to user
+            // Input is incorrect, shows error message to user
 
             // Adds the todo items as data so they are still visible in the view
             $todos = TodoItem::findAll();
@@ -42,12 +42,12 @@ class TodoController extends Controller
 
     public function update($urlParams)
     {
-        $body = filter_body(); // gives you the body of the request (the "envelope" contents)
-        $todoId = $urlParams['id']; // the id of the todo we're trying to update
-        $completed = isset($body['status']) ? 2 : 1; // whether or not the todo has been checked or not (2 == true, 1 == false, To work with DB)
+        $body = filter_body(); // Gives you the body of the request (the "envelope" contents)
+        $todoId = $urlParams['id']; // The id of the todo we're trying to update
+        $completed = isset($body['status']) ? 2 : 1; // Whether or not the todo has been checked or not (2 == true, 1 == false, To work with DB)
         $todoTitle = $body['title'];
 
-        // Checks if input is empty or only contains whitespace
+        // Checks if input is set and is not empty or only contains whitespace, proceeds to update todo item
         if (isset($todoTitle) && (trim($todoTitle) !== '')) {
             $todoTitle = sanitizeInput($todoTitle);
 
@@ -57,7 +57,7 @@ class TodoController extends Controller
                 $this->redirect('/');
             }
         } else {
-            // If input is incorrect, shows error message to user
+            // Input is incorrect, shows error message to user
             die('Input cannot be empty, try something else');
         }
     }
@@ -75,13 +75,13 @@ class TodoController extends Controller
      * The two methods below are optional, feel free to try and complete them
      * if you're aiming for a higher grade.
      */
-    public function toggle()
-    {
-        // (OPTIONAL) TODO: This action should toggle all todos to completed, or not completed.
-    }
+    // public function toggle()
+    // {
+    //     // (OPTIONAL) TODO: This action should toggle all todos to completed, or not completed.
+    // }
 
-    public function clear()
-    {
-        // (OPTIONAL) TODO: This action should remove all completed todos from the table.
-    }
+    // public function clear()
+    // {
+    //     // (OPTIONAL) TODO: This action should remove all completed todos from the table.
+    // }
 }

@@ -52,11 +52,13 @@ function includeWith($filePath, $variables = array())
     return $output;
 }
 
+// Shows a somewhat formatted version of exception message
 function showExceptionMessage($exception)
 {
     echo "<b>Caught exception:</b> {$exception->getMessage()} in File: <b>{$exception->getFile()}</b> on line <b>{$exception->getLine()}</b>";
 }
 
+// Sanitize a string, should be used after validation
 function sanitizeInput($input)
 {
     $input = trim($input); // Trims whitespace from beginning/end

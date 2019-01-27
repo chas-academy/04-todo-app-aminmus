@@ -5,16 +5,14 @@ namespace Todo;
 class TodoItem extends Model
 {
     // Query Exection Format
-    // methods: query($query); bind($param, $value); execute();
+    // methods: query($query); bind($param, $value, $type = null); execute();
     // self::$db->method();
 
     const TABLENAME = 'todos'; // This is used by the abstract model, don't touch
 
+    // Create a new todo
     public static function createTodo($title)
     {
-        // TODO: Implement me!
-        // TODO: Do not allow empty string or whitespaces only
-        
         $sql = 'INSERT INTO todos (title, created)
                 VALUES (:title, now())';
         
@@ -28,10 +26,9 @@ class TodoItem extends Model
         return $result;
     }
 
+    // Update a specific todo
     public static function updateTodo($todoId, $title, $completed = null)
     {
-        // Update a specific todo
-
         $sql = 'UPDATE todos SET title = :title, completed = :completed WHERE id = :todoId';
 
         try {
@@ -46,10 +43,9 @@ class TodoItem extends Model
         return $result;
     }
 
+    // Delete a specific todo
     public static function deleteTodo($todoId)
     {
-        // Delete a specific todo
-
         $sql = 'DELETE FROM todos WHERE id = :todoId';
 
         try {
@@ -57,7 +53,7 @@ class TodoItem extends Model
             self::$db->bind(':todoId', $todoId);
             self::$db->execute();
         } catch (\Exception $e) {
-            showExceptionMessage($e); // Will only be visible if page is not redirected via TodoController
+            showExceptionMessage($e); // Might only be visible if page is not redirected via TodoController
         }
     }
     
